@@ -1,0 +1,26 @@
+{
+  "name": "genesis-block-generator",
+  "version": "1.0.0",
+  "description": "Generates genesis block for blockpool v2",
+  "main": "index.js",
+  "author": "toucansam",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@arkecosystem/crypto": "^2.3.23",
+    "bip39": "^3.0.2",
+    "bytebuffer": "^5.0.1",
+    "ramda": "^0.26.1"
+  },
+  "devDependencies": {
+    "nyc": "^14.1.1",
+    "riteway": "^6.0.3",
+    "tap-nirvana": "^1.1.0",
+    "watch": "^1.0.2"
+  },
+  "scripts": {
+    "test": "nyc riteway src/**/*-rt.js | tap-nirvana",
+    "test:functional": "nyc riteway src/**/*-fun.js | tap-nirvana",
+    "watch": "watch 'npm run -s test' src"
+  }
+}
