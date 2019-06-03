@@ -786,6 +786,11 @@ function-bind@^1.0.2, function-bind@^1.1.1, function-bind@~1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
+gen-readlines@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/gen-readlines/-/gen-readlines-0.2.0.tgz#6f6aea05c8c7ac04b1fe518562c603d2e736b5ea"
+  integrity sha1-b2rqBcjHrASx/lGFYsYD0uc2teo=
+
 get-caller-file@^2.0.1:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
