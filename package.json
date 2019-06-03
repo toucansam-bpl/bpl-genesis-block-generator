@@ -11,7 +11,8 @@
     "bip39": "^3.0.2",
     "bytebuffer": "^5.0.1",
     "gen-readlines": "^0.2.0",
-    "ramda": "^0.26.1"
+    "ramda": "^0.26.1",
+    "secp256k1": "^3.7.1"
   },
   "devDependencies": {
     "nyc": "^14.1.1",
