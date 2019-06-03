@@ -47,10 +47,19 @@ describe('delegate factory, when creating a delegate from scratch', async assert
     expected: true,
   })
   */
+  assert({
+    given: 'a generated delegate',
+    should: 'have a generated username',
+    actual: delegate.username,
+    expected: 'genesis_1',
+  })
 })
 
 describe('delegate factory, when creating delegates from a file', async assert => {
-  const createDelegate = delegateFactory(resolve(__dirname, 'two-passphrases.txt'))
+  const createDelegate = delegateFactory(
+    resolve(__dirname, 'two-passphrases.txt'),
+    resolve(__dirname, 'user-key-map.txt')
+  )
   const delegate = createDelegate()
 
   assert({
@@ -65,6 +74,7 @@ describe('delegate factory, when creating delegates from a file', async assert =
         privateKey: 'd25f628c4be9edfe1277cbc301e1d96aea822bdea750cfc2deb74fcf4ecde35c',
         publicKey: '03af35b6ea06b9c4cdb426bcd685feb097103aae87d645ceaf66eee9578cbd2f4a',
       },
+      username: 'TEST_USER_1',
     }
   })
 
@@ -82,6 +92,7 @@ describe('delegate factory, when creating delegates from a file', async assert =
         privateKey: '206e5dde19d60c6e151c38a232cb1941bedf6df89882941bc5f28a3cd49e75ed',
         publicKey: '038aca101b5615e3495bdfbda084cc5f0c6ccbc8345e097db5bb649c827e0ae011',
       },
+      username: 'TEST_USER_2',
     }
   })
 })
