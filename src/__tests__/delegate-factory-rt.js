@@ -6,6 +6,8 @@ const { privateKeyVerify } = require('secp256k1')
 
 const delegateFactory = require('../delegate-factory')
 
+const verifyBplAddress = address => crypto.validateAddress(address, 25)
+
 describe('delegate factory, when creating a delegate from scratch', async assert => {
   const createDelegate = delegateFactory()
   const delegate = createDelegate()
@@ -31,6 +33,12 @@ describe('delegate factory, when creating a delegate from scratch', async assert
     expected: true,
   })
 
+  assert({
+    given: 'a generated delegate',
+    should: 'have a properly formatted address',
+    actual: verifyBplAddress(delegate.address),
+    expected: true,
+  })
   /*
   assert({
     given: 'a generated delegate',
@@ -50,6 +58,7 @@ describe('delegate factory, when creating delegates from a file', async assert =
     should: 'use the first passphrase from the file',
     actual: delegate,
     expected: {
+      address: 'BC4Jgv5SMwdwEZPYcnHcLvNxxKtKDEkSSN',
       passphrase: 'undo demand funny tower sheriff same lawn vacant reason rural total despair',
       keys: {
         compressed: true,
@@ -66,6 +75,7 @@ describe('delegate factory, when creating delegates from a file', async assert =
     should: 'have the second passphrase from the file',
     actual: delegate2,
     expected: {
+      address: 'B5qr7KqwXj987ufS49yzE8tTkvmcwbSXc2',
       passphrase: 'siege swear august ordinary dynamic say junior icon cube acoustic aisle stone',
       keys: {
         compressed: true,
