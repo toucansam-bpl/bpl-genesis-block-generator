@@ -5,9 +5,11 @@ const { describe } = require('riteway')
 const generateGenesisBlock = require('../genesis-block-generator')
 
 describe('genesis block generator when generating a genesis block from a file with 5 passphrases', async assert => {
-  const generateGenesisBlockFromFileWith5Delegates =
-    generateGenesisBlock(10, resolve(__dirname, 'five-passphrases.txt'))
-  const genesisBlock = generateGenesisBlockFromFileWith5Delegates()
+  const genesisBlock = generateGenesisBlock({
+    delegateCount: 10,
+    passphraseFilePath: resolve(__dirname, 'five-passphrases.txt'),
+    keyMapFilePath: resolve(__dirname, 'five-passphrase-keymap.txt'),
+  })
   
   const [first, second, third, fourth, fifth, ...rest] = genesisBlock.delegatePassphrases
 

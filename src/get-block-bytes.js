@@ -1,3 +1,5 @@
+const ByteBuffer = require('bytebuffer')
+
 module.exports = block => {
   const size = 4 + 4 + 4 + 8 + 4 + 4 + 8 + 8 + 4 + 4 + 4 + 32 + 32 + 64
 
@@ -50,9 +52,11 @@ module.exports = block => {
     }
 
     byteBuffer.flip()
-    const buffer = byteBuffer.toBuffer()
 
-    return buffer
+    return {
+      block,
+      bytes: byteBuffer.toBuffer(),
+    }
   } catch (error) {
     throw error
   }

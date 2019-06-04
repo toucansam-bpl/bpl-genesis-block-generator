@@ -8,7 +8,7 @@ const walletFactory = require('./wallet-factory')
 module.exports = ({ delegateCount, passphraseFilePath, keyMapFilePath }) => {
   const createDelegate = delegateFactory(passphraseFilePath, keyMapFilePath)
   const passphrases = generatePassphrase()
-  const createWallet = walletFactory(() => passphrases.next().value)
+  const createWallet = walletFactory(() => ({ passphrase: passphrases.next().value }))
 
   const genesisWallet = createWallet()
   const delegates = generateSequence(delegateCount).map(createDelegate)

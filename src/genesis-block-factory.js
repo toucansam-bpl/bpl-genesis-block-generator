@@ -1,4 +1,4 @@
-const { Bignum, crypto } = require('@arkecosystem/crypto')
+const { Bignum, crypto, TransactionSerializer, } = require('@arkecosystem/crypto')
 const { createHash } = require('crypto')
 const { pipe } = require('ramda')
 
@@ -14,13 +14,13 @@ const sortByType = transactions =>
 
 const createUnsignedBlock = (genesisWallet, timestamp) => transactions => 
   transactions.reduce((block, transaction) => {
-    const bytes = crypto.getBytes(transaction)
+    const bytes = TransactionSerializer.getBytes(transaction)
     block.payloadHash.update(bytes)
     return {
       ... block,
 
-      amount: transaction.amount ? block.amount.plus(transaction.amount) : block.amount,
       payloadLength: block.payloadLength + bytes.length,
+      totalAmount: transaction.amount ? block.totalAmount.plus(transaction.amount) : block.totalAmount,
       totalFee: block.totalFee.plus(transaction.fee),
     }
   }, {
@@ -44,7 +44,7 @@ const updatePayloadHash = genesisBlock => ({
   payloadHash: genesisBlock.payloadHash.digest().toString('hex'),
 })
 
-const getBlockIdFromHash = (block, hash) => {
+const getBlockIdFromHash = ({ block, hash }) => {
   const blockBuffer = Buffer.alloc(8)
   for (let i = 0; i < 8; i++) {
     blockBuffer[i] = hash[7 - i]
@@ -57,7 +57,7 @@ const getBlockIdFromHash = (block, hash) => {
   }
 }
 
-const signBlockHash = keys => (block, hash) => ({
+const signBlockHash = keys => ({ block, hash }) => ({
   ... block,
 
   blockSignature: crypto.signHash(hash, keys),
