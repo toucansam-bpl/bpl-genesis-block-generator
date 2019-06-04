@@ -18,7 +18,7 @@ module.exports = ({ delegateCount, passphraseFilePath, keyMapFilePath }) => {
   })
 
   return {
-    delegatePassphrases: delegates.map(d => d.passphrase),
+    delegates: { secrets: delegates.map(d => d.passphrase) },
     genesisBlock: createGenesisBlock(delegates.map(d => d.transaction)),
     genesisWallet,
   }

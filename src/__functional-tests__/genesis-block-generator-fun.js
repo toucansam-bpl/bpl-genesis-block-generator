@@ -11,7 +11,7 @@ describe('genesis block generator when generating a genesis block from a file wi
     keyMapFilePath: resolve(__dirname, 'five-passphrase-keymap.txt'),
   })
   
-  const [first, second, third, fourth, fifth, ...rest] = genesisBlock.delegatePassphrases
+  const [first, second, third, fourth, fifth, ...rest] = genesisBlock.delegates.secrets
 
   assert({
     given: 'a genesis block was generated',

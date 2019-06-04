@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+const { writeFileSync } = require('fs')
+const { resolve } = require('path')
+
+const createGenesisData = require('../src/genesis-block-generator')
+
+program
+  .option('--delegateCount', 'number of delegates')
+  .option('--passphraseFilePath', 'passphrase file path')
+  .option('--keyMapFilePath', 'key map file path')
+
+program.parse(process.argv)
+
+const genesisData = createGenesisData(program)
+
+const pretty = txt => JSON.stringify(txt, null, 2)
+
+writeFileSync(resolve(process.cwd(), 'delegates.json'), pretty(genesisData.delegates))
+writeFileSync(resolve(process.cwd(), 'genesisBlock.json'), pretty(genesisData.genesisBlock))
+writeFileSync(resolve(process.cwd(), 'genesisWallet.json'), pretty(genesisData.genesisWallet))
+
+console.log(`New nethash: "${genesisData.genesisBlock.payloadHash}"`)

@@ -2,7 +2,7 @@
   "name": "genesis-block-generator",
   "version": "1.0.0",
   "description": "Generates genesis block for blockpool v2",
-  "main": "index.js",
+  "bin": "./bin/run",
   "author": "toucansam",
   "license": "MIT",
   "private": false,
@@ -10,6 +10,7 @@
     "@arkecosystem/crypto": "^2.3.23",
     "bip39": "^3.0.2",
     "bytebuffer": "^5.0.1",
+    "commander": "^2.20.0",
     "gen-readlines": "^0.2.0",
     "ramda": "^0.26.1",
     "secp256k1": "^3.7.1"
