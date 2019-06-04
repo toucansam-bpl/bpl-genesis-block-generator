@@ -1,6 +1,7 @@
 const { pipe } = require('ramda')
 
 const generateAddress = require('./address-generator')
+const generateDelegateTransaction = require('./delegate-transaction-generator')
 const generateKeys = require('./key-generator')
 const generatePassphrase = require('./passphrase-generator')
 const generateUsernames = require('./username-generator')
@@ -14,5 +15,6 @@ module.exports = (passphraseFilePath, keyMapFilePath) => {
     generateKeys,
     generateAddress,
     getNextUsername,
+    generateDelegateTransaction,
   )
 }
