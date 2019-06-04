@@ -7,9 +7,9 @@ const { resolve } = require('path')
 const createGenesisData = require('../src/genesis-block-generator')
 
 program
-  .option('--delegateCount', 'number of delegates')
-  .option('--passphraseFilePath', 'passphrase file path')
-  .option('--keyMapFilePath', 'key map file path')
+  .option('--delegateCount <number>', 'number of delegates', val => parseInt(val, 10))
+  .option('--passphraseFilePath <file>', 'passphrase file path')
+  .option('--keyMapFilePath <file>', 'key map file path')
 
 program.parse(process.argv)
 
