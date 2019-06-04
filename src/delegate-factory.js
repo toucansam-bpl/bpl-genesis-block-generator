@@ -1,19 +1,17 @@
 const { pipe } = require('ramda')
 
-const generateAddress = require('./address-generator')
+const walletFactory = require('./wallet-factory')
 const generateDelegateTransaction = require('./delegate-transaction-generator')
-const generateKeys = require('./key-generator')
 const generatePassphrase = require('./passphrase-generator')
 const generateUsernames = require('./username-generator')
 
 module.exports = (passphraseFilePath, keyMapFilePath) => {
   const passphrases = generatePassphrase(passphraseFilePath)
   const getNextUsername = generateUsernames(keyMapFilePath)
+  const createWallet = walletFactory(() => ({ passphrase: passphrases.next().value, }))
 
   return pipe(
-    () => ({ passphrase: passphrases.next().value, }),
-    generateKeys,
-    generateAddress,
+    createWallet,
     getNextUsername,
     generateDelegateTransaction,
   )
